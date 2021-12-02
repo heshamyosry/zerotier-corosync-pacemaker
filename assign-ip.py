@@ -10,7 +10,7 @@ api_base = '{0}/controller/network/{1}/member'.format(base_url,network_id)
 
 
 def usage():
-    print('{0} [Floating IP] [Droplet ID]'.format(sys.argv[0]))
+    print('{0} [Floating IP] [Node ID]'.format(sys.argv[0]))
     print('\nYour Zerotier API token must be in the "zt_token"'
           ' environmental variable.')
     print('\nYour Zerotier API URL must be in the "zt_controllerURL"'
