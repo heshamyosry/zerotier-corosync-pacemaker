@@ -1,5 +1,4 @@
-
-#!/bin/bash
+#!/bin/sh
 
 param=$1
 
@@ -55,29 +54,29 @@ Zerotier Network ID
 END
 }
 
-if [ "start" == "$param" ] ; then
+if [ "start" = "$param" ] ; then
   currentIPs=$(ip addr show | grep inet | grep -v inet6 | awk '{print $2}')
   ID=$(cat /var/lib/zerotier-one/identity.public | cut -d':' -f1)
-  HAS_FLOATING_IP=`echo $currentIPs| grep -c $IP`
-  python /usr/local/bin/assign-ip $IP $ID
+  HAS_FLOATING_IP=$(echo "$currentIPs"| grep -c "$IP")
+  python /usr/local/bin/assign-ip "$IP" "$ID"
   exit 0
-elif [ "stop" == "$param" ] ; then
+elif [ "stop" = "$param" ] ; then
   exit 0;
-elif [ "status" == "$param" ] ; then
-  if [ $HAS_FLOATING_IP -eq 1 ] ; then
+elif [ "status" = "$param" ] ; then
+  if [ "$HAS_FLOATING_IP" -eq 1 ] ; then
     echo "Has Floating IP"
     exit 0
   else
     echo "Does Not Have Floating IP"
     exit 1
   fi
-elif [ "monitor" == "$param" ] ; then
-  if [ $HAS_FLOATING_IP -eq 1 ] ; then
+elif [ "monitor" = "$param" ] ; then
+  if [ "$HAS_FLOATING_IP" -eq 1 ] ; then
     exit 0
   else
     exit 7
   fi
-elif [ "meta-data" == "$param" ] ; then
+elif [ "meta-data" = "$param" ] ; then
   meta_data
   exit 0
 else
