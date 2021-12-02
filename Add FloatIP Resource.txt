@@ -1,5 +1,5 @@
 sudo crm configure primitive FloatIP ocf:zerotier:floatip \
-  params zt_token=your_digitalocean_personal_access_token \
+  params zt_token=personal_access_token \
   floating_ip=your_floating_ip \
-  zt_controllerURL=http://zt.cloud.gts-sys.com
+  zt_controllerURL=http://controller-url
   zt_networkID=faf3b5e040a6aab9	
