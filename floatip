@@ -7,9 +7,7 @@ export zt_token=$OCF_RESKEY_zt_token
 export zt_controllerURL=$OCF_RESKEY_zt_controllerURL
 export zt_networkID=$OCF_RESKEY_zt_networkID
 IP=$OCF_RESKEY_floating_ip
-currentIPs=$(ip addr show | grep inet | grep -v inet6 | awk '{print $2}')
-ID=$(cat /var/lib/zerotier-one/identity.public | cut -d':' -f1)
-HAS_FLOATING_IP=`echo $currentIPs| grep -c $IP`
+
 
 meta_data() {
   cat <<END
@@ -58,6 +56,9 @@ END
 }
 
 if [ "start" == "$param" ] ; then
+  currentIPs=$(ip addr show | grep inet | grep -v inet6 | awk '{print $2}')
+  ID=$(cat /var/lib/zerotier-one/identity.public | cut -d':' -f1)
+  HAS_FLOATING_IP=`echo $currentIPs| grep -c $IP`
   python /usr/local/bin/assign-ip $IP $ID
   exit 0
 elif [ "stop" == "$param" ] ; then
