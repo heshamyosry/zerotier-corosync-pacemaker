@@ -1,6 +1,7 @@
 # zerotier-corosync-pacemaker
 Implement Floating IP using Zerotier private controller network to be used in a High Availability Setup with Corosync, Pacemaker
 
+>Make sure that python is in your PATH which python should output the path to python binary
 
 Create Floating IP Reassignment Resource Agent:
 
